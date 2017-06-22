@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Guess The Number - HarryUK</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" rel="stylesheet">
+    <style>
+    body {
+        background-image: url("https://images.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn.pixabay.com%2Fphoto%2F2016%2F10%2F07%2F14%2F39%2Fspace-1721679_960_720.jpg&f=1");
+        background-size: cover;
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+
+    }
+    .jumbotron {
+        background-color:rgba(0,0,0,0.50);
+        color:white;
+        -webkit-backdrop-filter:blur(10px);
+        backdrop-filter:blur(10px);
+        -webkit-animation: zoomIn 1.2s ease;
+        animation: zoomIn 1.2s ease;
+    }
+    .ts {
+        background-color:rgba(0,0,0,0.50);
+        color:white;
+        -webkit-backdrop-filter:blur(10px);
+        backdrop-filter:blur(10px);
+        -webkit-animation: fadeInDown 1s ease;
+        animation: fadeInDown 1s ease;
+        border-bottom-width: 0px;
+    }
+    .st {
+        background-color:rgba(0,0,0,0.50);
+        color:white;
+        -webkit-backdrop-filter:blur(10px);
+        backdrop-filter:blur(10px);
+        -webkit-animation: fadeInUp 1s ease;
+        animation: fadeInUp 1s ease;
+        border:0px;
+    }
+    </style>
+  </head>
+  <body style="text-align:center">
+      <nav class="ts navbar-fixed-top navbar-default navbar">
+          <h1>HarryUK</h1>
+          <small>I'm hosted on GitHub</small>
+      </nav>
+      <div class="container">
+        <div class="jumbotron " style="margin-top:120px">
+            <noscript>
+                <h1>You're not using JS so this project wont work</h1>
+            </noscript>
+            <h1 style="margin-bottom:0px">Number Game</h1>
+            <small style="margin-top:0px">A game for the bored.</small>
+            <form class="form-inline text-center" id="form" style="margin-top:40px">
+                <div class="form-group">
+                    <label for="guess">Guess The Number:</label>
+                    <input id="guess" autocomplete="off" placeholder="Number here" type="number" required class="form-control">
+                    <button type="submit" onclick="yourGuess()" class="btn btn-default">Submit</button>
+                 </div>
+            </form>
+            <div>
+                <h4 style="padding-bottom:20px">Answer:</h4>
+                <h5 id="output" name="output" rows="7" style="width: 50%;margin-left:25%">Submit Your Guess</h5>
+            </div>
+        </div>
+    </div>
+            <nav class="navbar-fixed-bottom navbar navbar-default st">
+                <p style="padding-top:15px;" class="logo-brand">Name generator coded by Harry Carrigan with help from Samuel Thomas Elliott and Jared Farrish.<br /><span style="font-weight:bolder">View on GitHub</span><a href=""> <img src="https://images.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn1.iconfinder.com%2Fdata%2Ficons%2Fsocial-media-and-logos-8%2F32%2Fgithub_social_media_online_logo-512.png&f=1" style="width:40px;" class="brand-logo"></a></p>
+            </nav>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+            <script type="text/javascript">
+            function yourGuess() {
+                guess = document.getElementById("guess").value;
+                guesses = document.getElementById("output");
+                if(guess > 20) {
+                    document.getElementById("output").innerHTML = "Max is 20";
+                }
+                else if (guess == numToGuess) {
+                    guesses.textContent = guesses.textContent = "\r" + "You have guessed correctly" + " " + guess ;
+                } else if (guess > numToGuess) {
+                    guesses.textContent = guesses.textContent = "\r" + "You're guessing too high" + " " + guess ;
+                } else {
+                    guesses.textContent = guesses.textContent = "\r" + "You're guessing too low" + " " + guess ;
+                }
+                $("#output").animate({ scrollTop: $("#output")[0].scrollHeight })
+            }
+            function showNumberToGuess() {
+                if (document.getElementById('cheat').checked) {
+                    document.getElementById('numberToGuess').value = numToGuess;
+                    document.getElementById('cheatShow').style.display = 'inline';
+                }
+            }
+
+            var numToGuess = Math.floor(Math.random()*20);
+            $("#form").on("submit", function(event) {
+                event.preventDefault();
+                return false;
+            });
+            $("#output").animate({ scrollTop: $("#output")[0].scrollHeight })
+
+            </script>
+        </div>
+    </div>
+  </body>
+</html>
