@@ -9,11 +9,18 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" rel="stylesheet">
     <style>
     body {
-        background-image: url("https://images.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn.pixabay.com%2Fphoto%2F2016%2F10%2F07%2F14%2F39%2Fspace-1721679_960_720.jpg&f=1");
+        background-color: rgb(0, 222, 155);
+        background-image: url(https://images.duckduckgo.com/iu/?u=http%3A%2F%2Fnetdna.webdesignerdepot.com%2Fuploads7%2Ffree-osx-mavericks-wallpaper%2Fosx_hero_2x.jpg&f=1);
         background-size: cover;
         background-attachment: fixed;
         background-repeat: no-repeat;
 
+    }
+    nav.navbar {
+        padding-top: 20px;
+        padding-bottom: 20px;
+        position: sticky;
+        top: 0px;
     }
     .jumbotron {
         background-color:rgba(0,0,0,0.50);
@@ -44,17 +51,18 @@
     </style>
   </head>
   <body style="text-align:center">
-      <nav class="ts navbar-fixed-top navbar-default navbar">
+      <div class="page">
+      <nav style="padding-bottom" class="ts navbar-static-top navbar-default navbar">
           <h1>HarryUK</h1>
-          <small>I'm hosted on GitHub</small>
+          <p>I'm hosted on GitHub</p>
       </nav>
       <div class="container">
-        <div class="jumbotron " style="margin-top:120px">
+        <div class="jumbotron" style="margin-top:20px">
             <noscript>
                 <h1>You're not using JS so this project wont work</h1>
             </noscript>
             <h1 style="margin-bottom:0px">Number Game</h1>
-            <small style="margin-top:0px">A game for the bored.</small>
+            <p>A game for the bored.</p>
             <form class="form-inline text-center" id="form" style="margin-top:40px">
                 <div class="form-group">
                     <label for="guess">Guess The Number:</label>
@@ -67,27 +75,45 @@
                 <h5 id="output" name="output" rows="7" style="width: 50%;margin-left:25%">Submit Your Guess</h5>
             </div>
         </div>
+        <div class="jumbotron">
+            <h1>Documentation</h1>
+            <p>Here is the Documentation for this project</p>
+            <a href="..." class="btn btn-primary">Documentation</a>
+        </div>
     </div>
-            <nav class="navbar-fixed-bottom navbar navbar-default st">
-                <p style="padding-top:15px;" class="logo-brand">Name generator coded by Harry Carrigan with help from Samuel Thomas Elliott and Jared Farrish.<br /><span style="font-weight:bolder">View on GitHub</span><a href="https://github.com/HarryUK/Guessing-Game"> <img src="https://images.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn1.iconfinder.com%2Fdata%2Ficons%2Fsocial-media-and-logos-8%2F32%2Fgithub_social_media_online_logo-512.png&f=1" style="width:40px;" class="brand-logo"></a></p>
+            <nav class="navbar-static-bottom navbar navbar-default st" style="margin-bottom: 0px;">
+                <p class="logo-brand">Guessing Game coded by Harry Carrigan with help from Samuel Thomas Elliott and Jared Farrish.<br />
+                <span style="font-weight:bolder">View on GitHub</span><a href="https://github.com/HarryUK/Guessing-Game"> <img src="https://images.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn1.iconfinder.com%2Fdata%2Ficons%2Fsocial-media-and-logos-8%2F32%2Fgithub_social_media_online_logo-512.png&f=1" style="width:40px;" class="brand-logo"></a></p>
             </nav>
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
             <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
             <script type="text/javascript">
+            var nmbr = 0;
             function yourGuess() {
                 guess = document.getElementById("guess").value;
                 guesses = document.getElementById("output");
+                nmbr++;
                 if(guess > 20) {
                     document.getElementById("output").innerHTML = "Max is 20";
                 }
                 else if (guess == numToGuess) {
-                    guesses.textContent = guesses.textContent = "\r" + "You have guessed correctly" + " " + guess ;
-                } else if (guess > numToGuess) {
-                    guesses.textContent = guesses.textContent = "\r" + "You're guessing too high" + " " + guess ;
-                } else {
-                    guesses.textContent = guesses.textContent = "\r" + "You're guessing too low" + " " + guess ;
+                    if(nmbr == 1){ guesses.textContent = guesses.textContent = "\n" + "You have guessed it correctly first time!" + " " + guess;
                 }
+                    else if(nmbr > 20){ guesses.textContent = "\n...wow 20 guesses...well at least you got it: " + guess;
+                }
+                    else if(nmbr > 10){ guesses.textContent = guesses.textContent = "\n" + "Took you a while but you got it" + " " + guess;
+                }
+                    else {
+                    guesses.textContent = guesses.textContent = "\n" + "You have guessed correctly" + " " + guess ;
+                    }
+                } else if (guess > numToGuess) {
+                    guesses.textContent = guesses.textContent = "\n" + "You're guessing too high" + " " + guess ;
+                } else {
+                    guesses.textContent = guesses.textContent = "\n" + "You're guessing too low" + " " + guess ;
+                }
+
                 $("#output").animate({ scrollTop: $("#output")[0].scrollHeight })
+
             }
             function showNumberToGuess() {
                 if (document.getElementById('cheat').checked) {
@@ -95,7 +121,9 @@
                     document.getElementById('cheatShow').style.display = 'inline';
                 }
             }
-
+            function firsttry() {
+                alert
+            }
             var numToGuess = Math.floor(Math.random()*20);
             $("#form").on("submit", function(event) {
                 event.preventDefault();
@@ -106,5 +134,6 @@
             </script>
         </div>
     </div>
+</div>
   </body>
 </html>
