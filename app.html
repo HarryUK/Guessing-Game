@@ -1,0 +1,131 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Guess The Number - HarryUK</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+    <style>
+    body {
+        font-family: Montserrat, sans-serif;
+        background-color: rgb(37, 183, 211);        background-size: cover;
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+        overflow: auto;
+        border-width: 0px;
+    }
+    .btn {
+      margin-top: 10px;
+      height: 50px;
+      width: 100px;
+      margin-bottom: 0px;
+      border-width: 0px
+    }
+    .jumbotron {
+        background-color:rgb(63, 63, 63);
+        color:white;
+        -webkit-animation: zoomIn 1.2s ease;
+        animation: zoomIn 1.2s ease;
+        border-width: 0px;
+    }
+    .ts {
+        background-color:rgb(63, 63, 63);
+        color:white;
+        -webkit-animation: fadeInDown 1s ease;
+        animation: fadeInDown 1s ease;
+        border-width: 0px;
+    }
+    .st {
+        background-color:rgb(63, 63, 63);
+        color:white;
+        -webkit-animation: fadeInUp 1s ease;
+        animation: fadeInUp 1s ease;
+        border-width: 0px;
+    }
+    </style>
+  </head>
+  <body style="text-align:center">
+      <div class="page">
+      <nav style="padding-top:5px" class="ts">
+          <img style="width: 100px" src="https://images.duckduckgo.com/iu/?u=http%3A%2F%2Fcode.nixsiow.com%2Fassets%2Fimages%2FSkills-Icons%2FFrontEnd-Icon.png&f=1">
+          <h1 style="margin-top:0px">Hi There</h1>
+          <p>Welcome to Harry's simple guessing game</p>
+      </nav>
+      <div class="container">
+        <div class="jumbotron" style="margin-top:0px">
+            <noscript>
+                <h1>This Application Requires JavaScript enabled on Safari / Chrome</h1>
+            </noscript>
+
+            <h1 style="margin-bottom:0px">Number Game</h1>
+            <p>A game for the bored.</p>
+            <form class="form-inline text-center" id="form" onsubmit="blur()" style="">
+                <div class="form-group">
+                    <label for="guess">Guess The Number:</label>
+                    <input style="margin-left:0px" id="guess" autocomplete="off" placeholder="Number here" type="number" required class="form-control">
+                    <button type="submit" onclick="yourGuess()" class="btn btn-default">Submit</button>
+                 </div>
+            </form>
+        </div>
+    </div>
+    <div class="jumbotron st" style="margin-bottom:0px">
+        <div>
+            <h4 style="padding-bottom:20px">Answer:</h4>
+            <h5 id="output" name="output" style="width: 50%;margin-left:25%">Submit Your Guess</h5>
+        </div>
+    </div>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+            <script type="text/javascript">
+            var nmbr = 0;
+            function yourGuess() {
+                guess = document.getElementById("guess").value;
+                guesses = document.getElementById("output") ;
+                nmbr++;
+                if(guess > 20) {
+                    document.getElementById("output").innerHTML = "Max is 20";
+                }
+                else if (guess == numToGuess) {
+                    if(nmbr == 1){ guesses.textContent = guesses.textContent = "\n" + "You have guessed it correctly first time!" + " " + guess;
+                }
+                    else if(nmbr > 20){ guesses.textContent = "\n...wow 20 guesses...well at least you got it: " + guess;
+                }
+                    else if(nmbr > 10){ guesses.textContent = guesses.textContent = "\n" + "Took you a while but you got it" + " " + guess;
+                }
+                    else {
+                    guesses.textContent = guesses.textContent = "\n" + "You have guessed correctly" + " " + guess ;
+                    }
+                } else if (guess > numToGuess) {
+                    guesses.textContent = guesses.textContent = "\n" + "You're guessing too high" + " " + guess ;
+                } else {
+                    guesses.textContent = guesses.textContent = "\n" + "You're guessing too low" + " " + guess ;
+                }
+
+                $("#output").animate({ scrollTop: $("#output")[0].scrollHeight })
+
+            }
+            function showNumberToGuess() {
+                if (document.getElementById('cheat').checked) {
+                    document.getElementById('numberToGuess').value = numToGuess;
+                    document.getElementById('cheatShow').style.display = 'inline';
+                }
+            }
+            function firsttry() {
+                alert
+            }
+            var numToGuess = Math.floor(Math.random()*20);
+            $("#form").on("submit", function(event) {
+                event.preventDefault();
+                return false;
+            });
+            $("#output").animate({ scrollTop: $("#output")[0].scrollHeight })
+            </script>
+        </div>
+    </div>
+</div>
+  </body>
+</html>
